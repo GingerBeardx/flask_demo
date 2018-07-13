@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <h2>This is the index page</h2>
+  {% if session['users'] %}
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in session['users'] %}
+          <tr>
+            <td>{{ user['name'] }}</td>
+            <td>{{ user['email'] }}</td>
+            <td>
+              <a href="/edit/{{ user['email'] }}">Edit</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <h3>There are no users. Add one!</h3>
+  {% endif %}
+{% endblock %}
